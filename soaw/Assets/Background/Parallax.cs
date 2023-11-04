@@ -28,7 +28,7 @@ public class Parallax : MonoBehaviour
     public void ParallaxEfeito()
     {
         float RePosi = cam.transform.position.x * (1 - ParallaxEffect); // para fazer o fundo reposicionar.
-        float distancia = cam.transform.position.x * ParallaxEffect;
+        float distancia = cam.transform.position.x * ParallaxEffect; // para que a camera siga no eixo x e tenha o efeito
 
         transform.position = new Vector3(_posInicial + distancia, transform.position.y, transform.position.z);
 
