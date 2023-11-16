@@ -17,10 +17,13 @@ public class Player : MonoBehaviour
     
     //animações
     private Animator anim;
+    
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        
     }
     
     void Update()
@@ -36,19 +39,19 @@ public class Player : MonoBehaviour
 
         if (Input.GetAxis("Horizontal") > 0f)
         {
-            anim.SetBool("walk_direita", true);
+            anim.SetBool("walk", true);
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
         
         if (Input.GetAxis("Horizontal") < 0f)
         {
-            anim.SetBool("walk_direita", true);
+            anim.SetBool("walk", true);
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
         
         if (Input.GetAxis("Horizontal") == 0f)
         {
-            anim.SetBool("walk_direita", false);
+            anim.SetBool("walk", false);
         }
         
     }
@@ -61,6 +64,8 @@ public class Player : MonoBehaviour
             {
                 rig.AddForce(new Vector2(0f, Jumpforce), ForceMode2D.Impulse);
                 duploPulo = true;
+                anim.SetBool("jump", true);
+                anim.SetBool("walk", false);
             }
             else
             {
@@ -76,13 +81,14 @@ public class Player : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D Colisor)
     {
-        if (Colisor.gameObject.layer == 6) // se o game object estiver tocando no layer 6, vai executar.
+        if (Colisor.gameObject.layer == 6) // se o game object estiver tocando no layer 6, no chão, não vai acontecer nada.
         {
             isJumping = false;
+            anim.SetBool("jump", false);
         }
     }
     
-    private void OnCollisionExit2D(Collision2D Colisor) // se o game object estiver tocando no layer 6, vai executar.
+    private void OnCollisionExit2D(Collision2D Colisor) // se o game object não estiver tocando no layer 6, vai executar.
     {
         if (Colisor.gameObject.layer == 6)
         {
@@ -90,4 +96,11 @@ public class Player : MonoBehaviour
         }
         
     }
+
+    public void Dash()
+    {
+        
+    }
+    
+   
 }

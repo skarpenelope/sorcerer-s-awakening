@@ -118,8 +118,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8ddab6d51ef40924ca5348d11ff7b830
-      internalID: -2058539484
+      spriteID: 2a927af055ce9334fa1bd2d4c30831fa
+      internalID: 1533972000
       vertices: []
       indices: 
       edges: []
@@ -139,8 +139,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fd51879c5716a5c44a72451ae3c9daca
-      internalID: -25061252
+      spriteID: e72db34dfcf4b1841b855a5f479bf773
+      internalID: 491589408
       vertices: []
       indices: 
       edges: []
@@ -160,8 +160,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 009c6398e2204794fa75ca9203ed6cb9
-      internalID: 896228629
+      spriteID: 8921bde2c787054448e83212f22f673c
+      internalID: 1017633183
       vertices: []
       indices: 
       edges: []
@@ -181,8 +181,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5100bc95bba6fd54eada5359c4bdb541
-      internalID: -363367344
+      spriteID: 5c97f3087abe8aa42b39b88b2db78708
+      internalID: 1700115838
       vertices: []
       indices: 
       edges: []
@@ -202,8 +202,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7eb5fac861b67da4faf7a8807f151d5c
-      internalID: 844637145
+      spriteID: 78224795315235b4ebcd681aeded5470
+      internalID: -183584320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_right_5
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 0
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c2586ccc114bae348bf8810b89e1a0f5
+      internalID: 1109558949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: jump_right_6
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 0
+        width: 27
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ed8a680b890c18f4e9597f6bcc585a92
+      internalID: 1149030964
       vertices: []
       indices: 
       edges: []
@@ -219,11 +261,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      jump_right_2: 896228629
-      jump_right_1: -25061252
-      jump_right_0: -2058539484
-      jump_right_3: -363367344
-      jump_right_4: 844637145
+      jump_right_2: 1017633183
+      jump_right_6: 1149030964
+      jump_right_1: 491589408
+      jump_right_5: 1109558949
+      jump_right_0: 1533972000
+      jump_right_3: 1700115838
+      jump_right_4: -183584320
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
