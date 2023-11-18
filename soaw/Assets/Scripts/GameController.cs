@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
+    //Pontuação
     public int totalScoreAzul;
     public int totalScoreAmarelo;
     public int totalScoreVerde;
@@ -13,6 +15,10 @@ public class GameController : MonoBehaviour
     public TextMeshProUGUI scoreTextAzul;
     public TextMeshProUGUI scoreTextAmarelo;
     public TextMeshProUGUI scoreTextVerde;
+    
+    //GAME OVER
+    public GameObject gameOver;
+    
     public static GameController instance;
     void Start()
     {
@@ -32,5 +38,15 @@ public class GameController : MonoBehaviour
         scoreTextAmarelo.text = totalScoreAmarelo.ToString();
 
         scoreTextVerde.text = totalScoreVerde.ToString();
+    }
+
+    public void ShowGameOver()
+    {
+        gameOver.SetActive(true);
+    }
+
+    public void RestartGame(string levelName)
+    {
+        SceneManager.LoadScene(levelName);
     }
 }

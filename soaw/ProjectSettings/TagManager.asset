@@ -7,6 +7,9 @@ TagManager:
   - Gema
   - gemaAmarela
   - gemaVerde
+  - Morte
+  - ponto1
+  - ponto2
   layers:
   - Default
   - TransparentFX

@@ -86,6 +86,15 @@ public class Player : MonoBehaviour
             isJumping = false;
             anim.SetBool("jump", false);
         }
+        
+        //GAME OVER
+
+        if (Colisor.gameObject.tag == "Morte")
+        {
+            Debug.Log("morreu");
+            GameController.instance.ShowGameOver();
+            Destroy(gameObject);
+        }
     }
     
     private void OnCollisionExit2D(Collision2D Colisor) // se o game object não estiver tocando no layer 6, vai executar.
@@ -98,6 +107,11 @@ public class Player : MonoBehaviour
     }
 
     public void Dash()
+    {
+        
+    }
+
+    public void Vida()
     {
         
     }
