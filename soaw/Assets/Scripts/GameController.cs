@@ -49,4 +49,9 @@ public class GameController : MonoBehaviour
     {
         SceneManager.LoadScene(levelName);
     }
+
+    public void UpdateLife()
+    {
+        
+    }
 }

@@ -1,12 +1,20 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     //movimento
     public float velocidade;
+    [SerializeField]
     private Rigidbody2D rig;
+    
+    //DASH
+    public float speeddash;
+    public float timedash;
+    public float velocidadeDash;
     
     //Pulo
     public float Jumpforce;
@@ -18,18 +26,39 @@ public class Player : MonoBehaviour
     //animações
     private Animator anim;
     
+    //atirar
+    public GameObject laserJogador;
+    public Transform localdolaser;
+    
+    //MANA
+    public int manaAtual;
+    public int manaMax;
+
+    public Slider barrademana;
+
+    public bool temMana;
+
+    public int CustoTiro;
+    
+    
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        
+        //ManaJogador mana = GetComponent<ManaJogador>();
+
+        manaAtual = manaMax;
+        temMana = true;
+
+
     }
     
     void Update()
     {
         MovimentoJogador();
         Pulo();
+        Atirando();
     }
 
     public void MovimentoJogador()
@@ -54,6 +83,14 @@ public class Player : MonoBehaviour
             anim.SetBool("walk", false);
         }
         
+    }
+
+    public void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            this.rig.velocity = new Vector2(this.velocidadeDash, 0);
+        }
     }
 
     public void Pulo()
@@ -104,11 +141,75 @@ public class Player : MonoBehaviour
             isJumping = true;
         }
         
+        
     }
 
-    public void Dash()
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        
+        //PARA GANHAR VIDA SE COLETAR
+        if (col.gameObject.CompareTag("vida"))
+        {
+            gameObject.GetComponent<VidaDoJogador>().MoreLife();
+            Destroy(col.gameObject);
+        }
+
+
+
+    }
+    
+    public void GanharMana(int ManaParaGanhar)
+    {
+        if (manaAtual + ManaParaGanhar <= manaMax)
+        {
+            manaAtual += ManaParaGanhar;
+        }
+        else
+        {
+            manaAtual = manaMax;
+        }
+
+        barrademana.value = manaAtual;
+    }
+
+    public void QuantidadeMana()
+    {
+        if (manaAtual > 0)
+        {
+            temMana = true;
+        }
+        if(manaAtual <= 0)
+        {
+            temMana = false;
+        }
+    }
+
+    public void Atirando()
+    {
+        if (Input.GetKeyDown(KeyCode.Q) && temMana == true)
+        {
+            anim.SetBool("ataque", true);
+            Instantiate(laserJogador, localdolaser.position, localdolaser.rotation);
+            //anim.SetBool("walk", false);
+
+            manaAtual -= CustoTiro;
+            barrademana.value = manaAtual;
+        }
+
+        if (Input.GetKeyUp(KeyCode.Q))
+        {
+            anim.SetBool("ataque", false);
+            //anim.SetBool("walk", true);
+        }
+
+        if (temMana == false)
+        {
+            return;
+        }
+    }
+
+    public void SofrendoDano()
+    {
+        anim.SetBool("dano", true);
     }
 
     public void Vida()
