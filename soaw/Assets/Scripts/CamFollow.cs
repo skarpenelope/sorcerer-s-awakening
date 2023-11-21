@@ -10,5 +10,6 @@ public class CamFollow : MonoBehaviour
     private void FixedUpdate()
     {
         transform.position = Vector2.Lerp(transform.position, player.position, 0.1f);
+        // atualiza a posição da camera de acordo com o player;
     }
 }

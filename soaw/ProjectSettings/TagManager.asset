@@ -15,6 +15,10 @@ TagManager:
   - Spike
   - Atirar
   - Inimigo
+  - Pulapula
+  - Patrulheiro
+  - Portal
+  - Morte2
   layers:
   - Default
   - TransparentFX

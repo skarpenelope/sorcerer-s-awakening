@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Boladefogo : MonoBehaviour
@@ -27,6 +28,12 @@ public class Boladefogo : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        if (col.gameObject.CompareTag("Patrulheiro"))
+        {
+            col.gameObject.GetComponent<Vidadoinimigo>().MachucarInimigo(danoParaDar);
+            Destroy(this.gameObject);
+        }
+        
         if (col.gameObject.CompareTag("Inimigo"))
         {
             col.gameObject.GetComponent<Vidadoinimigo>().MachucarInimigo(danoParaDar);

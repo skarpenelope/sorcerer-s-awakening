@@ -18,11 +18,16 @@ public class GameController : MonoBehaviour
     
     //GAME OVER
     public GameObject gameOver;
+
+
+    public GameObject Win;
     
     public static GameController instance;
     void Start()
     {
         instance = this;
+
+        VidaDoJogador vida = GetComponent<VidaDoJogador>();
     }
 
     // Update is called once per frame
@@ -43,6 +48,7 @@ public class GameController : MonoBehaviour
     public void ShowGameOver()
     {
         gameOver.SetActive(true);
+
     }
 
     public void RestartGame(string levelName)

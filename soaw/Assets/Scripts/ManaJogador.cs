@@ -9,14 +9,11 @@ public class ManaJogador : MonoBehaviour
     public int manaMax;
 
     public Slider barrademana;
-
-    public bool temMana;
+    
     
     void Start()
     {
         manaAtual = manaMax;
-
-        temMana = true;
     }
 
     // Update is called once per frame
@@ -31,23 +28,7 @@ public class ManaJogador : MonoBehaviour
         {
             manaAtual += ManaParaGanhar;
         }
-        else
-        {
-            manaAtual = manaMax;
-        }
 
         barrademana.value = manaAtual;
-    }
-
-    public void QuantidadeMana()
-    {
-        if (manaAtual > 0)
-        {
-            temMana = true;
-        }
-        else
-        {
-            temMana = false;
-        }
     }
 }

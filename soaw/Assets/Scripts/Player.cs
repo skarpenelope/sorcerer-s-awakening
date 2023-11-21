@@ -40,6 +40,9 @@ public class Player : MonoBehaviour
 
     public int CustoTiro;
     
+    //PULAPULA
+    public float jumpforcepula;
+    
     
     void Start()
     {
@@ -59,6 +62,7 @@ public class Player : MonoBehaviour
         MovimentoJogador();
         Pulo();
         Atirando();
+        QuantidadeMana();
     }
 
     public void MovimentoJogador()
@@ -69,12 +73,14 @@ public class Player : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0f)
         {
             anim.SetBool("walk", true);
+            anim.SetBool("jump", false);
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
         }
         
         if (Input.GetAxis("Horizontal") < 0f)
         {
             anim.SetBool("walk", true);
+            anim.SetBool("jump", false);
             transform.eulerAngles = new Vector3(0f, 180f, 0f);
         }
         
@@ -82,7 +88,7 @@ public class Player : MonoBehaviour
         {
             anim.SetBool("walk", false);
         }
-        
+
     }
 
     public void Dash()
@@ -99,9 +105,9 @@ public class Player : MonoBehaviour
         {
             if (!isJumping)
             {
-                rig.AddForce(new Vector2(0f, Jumpforce), ForceMode2D.Impulse);
+                rig.AddForce(new Vector2(0f, Jumpforce), ForceMode2D.Impulse); //impulso para cima
                 duploPulo = true;
-                anim.SetBool("jump", true);
+                anim.SetBool("jump", true); // ativa a animação de pulo quando apertar o botão.
                 anim.SetBool("walk", false);
             }
             else
@@ -112,7 +118,12 @@ public class Player : MonoBehaviour
                     duploPulo = false;
                 }
             }
-            //rig.AddForce(new Vector2(0f, Jumpforce), ForceMode2D.Impulse);
+
+            if (Input.GetButtonUp("Jump"))
+            {
+                anim.SetBool("jump", false);
+                anim.SetBool("walk", true);
+            }
         }
     }
     
@@ -127,6 +138,30 @@ public class Player : MonoBehaviour
         //GAME OVER
 
         if (Colisor.gameObject.tag == "Morte")
+        {
+            Debug.Log("morreu");
+            GameController.instance.ShowGameOver();
+            Destroy(gameObject);
+        }
+        
+        if (Colisor.gameObject.tag == "Morte2")
+        {
+            Debug.Log("morreu");
+            GameController.instance.ShowGameOver();
+            Destroy(gameObject);
+        }
+        
+        //PULAPULA
+
+        if (Colisor.gameObject.tag == "Pulapula")
+        {
+            anim.SetTrigger("jump");
+            rig.AddForce(new Vector2(0f, jumpforcepula), ForceMode2D.Impulse);
+            
+        }
+        
+        //BATER NO INIMIGO PATRULHEIRO E MORRER
+        if (Colisor.gameObject.tag == "Patrulheiro")
         {
             Debug.Log("morreu");
             GameController.instance.ShowGameOver();
@@ -157,19 +192,6 @@ public class Player : MonoBehaviour
 
     }
     
-    public void GanharMana(int ManaParaGanhar)
-    {
-        if (manaAtual + ManaParaGanhar <= manaMax)
-        {
-            manaAtual += ManaParaGanhar;
-        }
-        else
-        {
-            manaAtual = manaMax;
-        }
-
-        barrademana.value = manaAtual;
-    }
 
     public void QuantidadeMana()
     {
@@ -182,6 +204,7 @@ public class Player : MonoBehaviour
             temMana = false;
         }
     }
+    
 
     public void Atirando()
     {
@@ -193,6 +216,7 @@ public class Player : MonoBehaviour
 
             manaAtual -= CustoTiro;
             barrademana.value = manaAtual;
+
         }
 
         if (Input.GetKeyUp(KeyCode.Q))
@@ -210,6 +234,11 @@ public class Player : MonoBehaviour
     public void SofrendoDano()
     {
         anim.SetBool("dano", true);
+    }
+
+    public void Pulapula()
+    {
+        
     }
 
     public void Vida()
